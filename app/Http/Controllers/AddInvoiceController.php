@@ -16,7 +16,7 @@ class AddInvoiceController extends Controller
         $parties = Party::where('admin_id',session('id'))->get();
 
         $invoices = Invoice::join('party', 'invoice.party_id', '=', 'party.id')
-				    ->select('invoice.*', 'party.name', 'party.GSTIN','party.id AS party_id')
+				    ->select('invoice.*', 'party.name', 'party.GSTIN')
 				    ->where('invoice.admin_id', session('id'))
 				    ->get();
 

@@ -171,12 +171,12 @@
 		                $('#myForm').find('#taxable_amount').val('');
 		                $('#myForm').find('#tax_slab').val('');
 		                $('#myForm').find('#total_amount').val('');
-		                $('#myForm').find('#GSTIN').val('');
+		                $('#GSTIN').val('');
 		                $('#addBtn').html('Add Invoice');
                         $('#GSTIN').prop('disabled', false);
 		                
 		                // Reload the page
-                        window.location.href = window.location.href;
+                        location.reload();
 
 		            },
 		            error: function(xhr, status, error) {
@@ -201,8 +201,6 @@
 					var year = inputDate.getFullYear();
 
                     var formattedDate = day + ' ' + month + ' ' + year;
-
-                    console.log(formattedDate);
 
 			        $('#invoice-id').val(($(this).data('id')));
 			        $('#party').val(($(this).data('partyid')));

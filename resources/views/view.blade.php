@@ -127,9 +127,31 @@ $(document).ready(function() {
 
                     var formattedDate = day + ' ' + month + ' ' + year + ' ' + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
 
+                    $('#transbody').append(
+                        '<tr>' +
+                            '<td>' + formattedDate + '</td>' +
+                            '<td>' + transaction.credit + '</td>' +
+                            '<td>' + transaction.debit + '</td>' +
+                            '<td>' + transaction.note + '</td>' +
+                            '<td>' + transaction.file + '</td>' +
+                            '<td>' +
+                                '<a class="btn editTrans" href="#" ' +
+                                    'data-id="' + transaction.id + '" ' +
+                                    'data-note="' + transaction.note + '" ' +
+                                    'data-date="' + formattedDate + '" ' +
+                                    'data-amount="' + amount + '" ' +
+                                    'data-amountType="' + amountType + '">' +
+                                    '<i class="fa fa-pencil fa-lg text-success"></i>' +
+                                '</a>' +
+                                '<a class="btn deleteTrans" href="#" data-id="' + transaction.id + '">' +
+                                    '<i class="fa-solid fa-trash fa-lg text-danger"></i>' +
+                                '</a>' +
+                            '</td>' +
+                        '</tr>'
+                    );
 
-                    $('#transbody').append('<tr><td>' + formattedDate + '</td><td>' + transaction.credit + '</td><td>' + transaction.debit + '</td><td>' + transaction.note + '</td><td>' + transaction.file + '</td><td><a class="btn editTrans" href="#" data-id="'+transaction.id+'" data-note="'+transaction.note+'" data-date="'+formattedDate+'" data-amount="'+amount+'" data-amountType="'+amountType+'"><i class="fa fa-pencil fa-lg text-success"></i></a><a class="btn deleteTrans" href="#" data-id="'+transaction.id+'"><i class="fa-solid fa-trash fa-lg text-danger"></i></a></td></tr>');
-                    
+
+
                 });
 
                   var totalBalance = totalCredit - totalDebit ;
