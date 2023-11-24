@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class AddInvoiceController extends Controller
 {
-    public function AddInvoice()
+    public function ViewInvoice()
     {
         $parties = Party::where('admin_id',session('id'))->get();
 

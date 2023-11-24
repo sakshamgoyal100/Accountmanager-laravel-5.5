@@ -41,7 +41,7 @@ Route::group(['middleware' => 'WebGuard',], function () {
     Route::get('/excel/{user_id}','ExcelController@export');
     Route::get('/addparty','AddPartyController@AddParty');
     Route::post('/addparty','AddPartyController@SubmitAddParty');
-    Route::get('/addinvoice','AddInvoiceController@AddInvoice');
+    Route::get('/addinvoice','AddInvoiceController@ViewInvoice');
     Route::post('/invoice/submitform','AddInvoiceController@SubmitForm');
     Route::get('/invoice/delete/{invoice_id}','AddInvoiceController@DeleteInvoice');
     Route::get('/invoicereport','InvoiceReportController@viewReport');
