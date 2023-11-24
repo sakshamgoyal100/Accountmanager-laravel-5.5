@@ -16,12 +16,10 @@ class PdfController extends Controller
 
         $transactions = Transaction::where('user_id', $user_id)->get();
 
-        $sum = Transaction::selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->first();
+        $sum = Transaction::where('user_id', $user_id)->selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->first();
 
 
         $pdfContent =  view('pdf', compact('user','transactions','sum'));
-
-         //$pdfContent =
 
         $pdf = \PDF::loadHTML($pdfContent);
 

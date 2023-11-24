@@ -34,4 +34,3 @@ class LoginController extends Controller
    }
 
 }
-//	return view('products');

@@ -16,6 +16,7 @@ class AddColumnsToSuperAdminTable extends Migration
         Schema::table('super_admin', function (Blueprint $table) {
             $table->bigInteger('mobile')->after('password');
             $table->string('address')->after('password');
+            $table->string('GSTIN')->after('email');
             
         });
     }

@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('note');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            
             $table->string('file')->nullable();
             $table->timestamps();
         });

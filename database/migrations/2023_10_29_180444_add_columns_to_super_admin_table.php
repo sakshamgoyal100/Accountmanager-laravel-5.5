@@ -14,10 +14,10 @@ class AddColumnsToSuperAdminTable extends Migration
     public function up()
     {
         Schema::table('super_admin', function (Blueprint $table) {
-           
             $table->string('GSTIN')->after('email');
-            
-        });
+
+            });
+        
     }
 
     /**

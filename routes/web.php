@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\AddUserController;
 use App\Http\Middleware\WebGuard;
 use App\Http\Controllers\AddPartyController;
+use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +72,8 @@ Route::get('/logout', function () {
 Route::get('/session', function () {
     return session()->all();
 });
+
+Route::get('/test','TestController@Test');
+
+
+
