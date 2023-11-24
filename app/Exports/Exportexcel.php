@@ -22,7 +22,7 @@ class Exportexcel implements FromView
 
     public function view(): View
     {
-        return view('pdf', [
+        return view('pdf_excel', [
             'user' => $this->user,
             'transactions' => $this->transactions,
             'sum' => $this->sum,

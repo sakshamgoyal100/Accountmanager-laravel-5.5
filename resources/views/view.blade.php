@@ -61,7 +61,6 @@
 					<th scope="col">Cr.Amt</th>
 					<th scope="col">Dbt.Amt</th>
 					<th scope="col">Note</th>
-					<th scope="col">File</th>
                     <th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -118,6 +117,7 @@ $(document).ready(function() {
                     var day = inputDate.getDate();
                     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     var month = monthNames[inputDate.getMonth()];
+                    console.log(inputDate.getMonth());
                     var year = inputDate.getFullYear();
                     var hours = inputDate.getHours();
                     var minutes = inputDate.getMinutes();
@@ -133,7 +133,6 @@ $(document).ready(function() {
                             '<td>' + transaction.credit + '</td>' +
                             '<td>' + transaction.debit + '</td>' +
                             '<td>' + transaction.note + '</td>' +
-                            '<td>' + transaction.file + '</td>' +
                             '<td>' +
                                 '<a class="btn editTrans" href="#" ' +
                                     'data-id="' + transaction.id + '" ' +

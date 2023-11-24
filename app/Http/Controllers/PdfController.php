@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class PdfController extends Controller
 {
@@ -19,7 +17,7 @@ class PdfController extends Controller
         $sum = Transaction::where('user_id', $user_id)->selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->first();
 
 
-        $pdfContent =  view('pdf', compact('user','transactions','sum'));
+        $pdfContent =  view('pdf_excel', compact('user','transactions','sum'));
 
         $pdf = \PDF::loadHTML($pdfContent);
 

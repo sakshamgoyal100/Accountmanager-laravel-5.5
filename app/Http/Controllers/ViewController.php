@@ -18,6 +18,7 @@ class ViewController extends Controller
         if ($user == null) {
              
              return view('index');
+             
          } else{
         // Using compact to pass data to the view
         return view('view', compact('user'));
