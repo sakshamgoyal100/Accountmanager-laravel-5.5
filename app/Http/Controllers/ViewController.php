@@ -7,6 +7,8 @@ use App\Models\Transaction;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Exports\Exportexcel;
+
 
 class ViewController extends Controller
 {
@@ -83,13 +85,41 @@ class ViewController extends Controller
 		    }
      }
 
-     public function DeleteTransactionData($trans_id){
-            
+    public function DeleteTransactionData($trans_id)
+    {        
             $transactions = Transaction::find($trans_id)->delete();
             return response()->json($transactions);
+    }
+
+    public function generatePDF($user_id)
+    {
+        
+        $user = Users::find($user_id);
+
+        $transactions = Transaction::where('user_id', $user_id)->get();
+
+        $sum = Transaction::where('user_id', $user_id)->selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->first();
 
 
-     }
+        $pdfContent =  view('pdf_excel', compact('user','transactions','sum'));
+
+        $pdf = \PDF::loadHTML($pdfContent);
+
+        return $pdf->download($user->name.'-'.today()->toDateString().'.pdf');
+    }
+
+    public function excel($user_id)
+    {
+        $user = Users::find($user_id);
+
+        $transactions = Transaction::where('user_id', $user_id)->get();
+
+        $sum = Transaction::selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->where('user_id', $user_id)->first();
+        
+
+        return \Excel::download(new Exportexcel($transactions,$user,$sum), $user->name.'-'.today()->toDateString().'.xlsx');
+
+    }
 
 }     
 

@@ -48,9 +48,9 @@ Route::group(['middleware' => 'WebGuard',], function () {
     
     Route::post('/date/gettransactiondata','DateController@GetTransactionData');
     
-    Route::get('/getpdf/{user_id}','PdfController@generatePDF');
+    Route::get('/getpdf/{user_id}','ViewController@generatePDF');
     
-    Route::get('/excel/{user_id}','ExcelController@excel');
+    Route::get('/excel/{user_id}','ViewController@excel');
     
     Route::get('/addparty','AddPartyController@AddParty');
     
