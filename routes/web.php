@@ -65,6 +65,11 @@ Route::group(['middleware' => 'WebGuard',], function () {
     Route::get('/invoicereport','InvoiceReportController@viewReport');
 
     Route::post('/invoice/getreport','InvoiceReportController@GetReportData');
+
+    Route::get('/invoice/getpdf/{startDate}&{endDate}','InvoiceReportController@generatePDF');
+
+    Route::get('/invoice/getexcel/{startDate}&{endDate}','InvoiceReportController@generateExcel');
+
     
 });
 

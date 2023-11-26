@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Invoice;
+use App\Models\InvoiceModel;
+use App\Exports\InvoiceExport;
 
 class InvoiceReportController extends Controller
 {
@@ -16,19 +17,45 @@ class InvoiceReportController extends Controller
     public function GetReportData(Request $request)
     {
        $startDate = $request->input('startDate');
-       $startFormat = Carbon::createfromFormat('d F Y',$startDate);
-       $startNew = $startFormat->format('Y-m-d');
-       
+     
        $endDate = $request->input('endDate');
-       $endFormat = Carbon::createfromFormat('d F Y',$endDate);
-       $endNew = $endFormat->format('Y-m-d');
 
-       $invoice = Invoice::join('party','invoice.party_id','=','party.id')
-                  ->select('invoice.*','party.name','party.GSTIN')
-                  ->where('invoice.admin_id',session('id'))
-                  ->whereBetween('invoice.invoice_date',[$startNew,$endNew])
-                  ->get();
+       $invoice = InvoiceModel::GetReportData($startDate,$endDate);
 
        return response()->json($invoice);
     }
+    
+    public function generatePDF($startDate,$endDate)
+    {
+
+       $invoices = InvoiceModel::GetReportData($startDate,$endDate);
+
+       $totalsum = InvoiceModel::GetTotalSum($startDate,$endDate); 
+
+       $data = compact('invoices','totalsum','startDate','endDate');
+
+       $pdfcontent =view('invoice_pdf_excel',$data);
+
+       $pdf = \PDF::loadHTML($pdfcontent);
+
+       return $pdf->download(session('name').'-'.today().'.pdf');
+    }
+
+    public function generateExcel($startDate,$endDate)
+    {
+
+       $invoices = InvoiceModel::GetReportData($startDate,$endDate);
+
+       $totalsum = InvoiceModel::GetTotalSum($startDate,$endDate);
+
+       $export = new InvoiceExport($invoices,$totalsum,$startDate,$endDate);
+
+       return \Excel::download($export,session('name').'-'.today().'.xlsx');
+
+
+
+    }
+
+
+
 }

@@ -30,7 +30,9 @@ class ViewController extends Controller
     public function GetTransactionData($user_id)
     {
  
-    $transactions = Transaction::where('user_id', $user_id)->where('admin_id',session('id'))->get();
+    $transactions = Transaction::where('user_id', $user_id)
+                    ->where('admin_id',session('id'))
+                    ->get();
 
     return response()->json($transactions);
     }
@@ -98,10 +100,12 @@ class ViewController extends Controller
 
         $transactions = Transaction::where('user_id', $user_id)->get();
 
-        $sum = Transaction::where('user_id', $user_id)->selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->first();
+        $sum = Transaction::where('user_id', $user_id)
+               ->selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')
+               ->first();
 
 
-        $pdfContent =  view('pdf_excel', compact('user','transactions','sum'));
+        $pdfContent = view('user_report_pdf_excel', compact('user','transactions','sum'));
 
         $pdf = \PDF::loadHTML($pdfContent);
 
@@ -112,9 +116,12 @@ class ViewController extends Controller
     {
         $user = Users::find($user_id);
 
-        $transactions = Transaction::where('user_id', $user_id)->get();
+        $transactions = Transaction::where('user_id', $user_id)
+                        ->get();
 
-        $sum = Transaction::selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')->where('user_id', $user_id)->first();
+        $sum = Transaction::selectRaw('SUM(credit) as total_credit, SUM(debit) as total_debit')
+               ->where('user_id', $user_id)
+               ->first();
         
 
         return \Excel::download(new Exportexcel($transactions,$user,$sum), $user->name.'-'.today()->toDateString().'.xlsx');

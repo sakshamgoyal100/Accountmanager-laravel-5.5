@@ -40,6 +40,10 @@
         
     </div>
 
+    <div id="excelbutton">
+        
+    </div>
+
 </div>
 
 <script type="text/javascript">
@@ -49,7 +53,6 @@ $(document).ready(function(){
       $('#showdata').click(function(){
 
           $('#tbody ,#pdfbutton').empty();
-          //$('#pdfbutton').empty();
 
           $.ajaxSetup({
                 headers: {
@@ -86,7 +89,11 @@ $(document).ready(function(){
                     });
 
                     $('#pdfbutton').append(
-                       "<button class='btn btn-primary mt-5 w-100'>Download as PDF</button>"
+                       "<a href='{{url('invoice/getpdf/')}}/"+$('#startDate').val()+"&"+$('#endDate').val()+"' class='btn btn-primary mt-5 w-100 pdfDown'>Download as PDF</a>"
+                    );
+
+                    $('#excelbutton').append(
+                     "<a href='{{url('/invoice/getexcel')}}/"+$('#startDate').val()+"&"+$('#endDate').val()+"' class='btn btn-primary mt-5 w-100'>Download as Excel</a>"
                     );
                     
                     console.log(response);
@@ -99,11 +106,9 @@ $(document).ready(function(){
 
           });
 
-
-
       });
 
-
+      
 });
 
 
