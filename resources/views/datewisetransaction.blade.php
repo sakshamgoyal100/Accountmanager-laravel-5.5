@@ -24,8 +24,6 @@
 					<th scope="col">Cr.Amt</th>
 					<th scope="col">Dbt.Amt</th>
 					<th scope="col">Note</th>
-					<th scope="col">File</th>
-                    <th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody id="transbody">
@@ -81,7 +79,14 @@ $(document).ready(function() {
 		                    var formattedDate = day + ' ' + month + ' ' + year + ' ' + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
 
 
-		                    $('#transbody').append('<tr><td>' + formattedDate + '</td><td>' + transaction.credit + '</td><td>' + transaction.debit + '</td><td>' + transaction.note + '</td><td>' + transaction.file + '</td></tr>');
+		                    $('#transbody').append(
+		                    	'<tr>'+
+		                    	'<td>' + formattedDate + '</td>'+
+		                    	'<td>' + transaction.credit + '</td>'+
+		                    	'<td>' + transaction.debit + '</td>'+
+		                    	'<td>' + transaction.note + '</td>'+
+		                    	'</tr>'
+		                    	);
 		                    
 		                    });
 

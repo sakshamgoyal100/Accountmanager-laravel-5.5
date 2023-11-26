@@ -63,6 +63,8 @@ Route::group(['middleware' => 'WebGuard',], function () {
     Route::get('/invoice/delete/{invoice_id}','AddInvoiceController@DeleteInvoice');
     
     Route::get('/invoicereport','InvoiceReportController@viewReport');
+
+    Route::post('/invoice/getreport','InvoiceReportController@GetReportData');
     
 });
 

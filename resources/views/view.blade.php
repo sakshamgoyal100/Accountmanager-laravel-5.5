@@ -117,7 +117,6 @@ $(document).ready(function() {
                     var day = inputDate.getDate();
                     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     var month = monthNames[inputDate.getMonth()];
-                    console.log(inputDate.getMonth());
                     var year = inputDate.getFullYear();
                     var hours = inputDate.getHours();
                     var minutes = inputDate.getMinutes();
