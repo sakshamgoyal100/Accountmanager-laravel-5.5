@@ -27,7 +27,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<div class="forgot-password padding-top-10"><a href="forgot-password.php">Forgot Password</a></div>
+						<div class="forgot-password padding-top-10"><a href="{{url('/forgot-password')}}">Forgot Password</a></div>
 					</div>
 				</div>
 			</form>

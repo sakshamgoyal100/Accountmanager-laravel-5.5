@@ -55,6 +55,12 @@ Route::group(['middleware' => 'WebGuard',], function () {
     Route::get('/addparty','AddPartyController@AddParty');
     
     Route::post('/addparty','AddPartyController@SubmitAddParty');
+
+    Route::get('/help', function (){return view('help'); });
+
+    Route::get('/profile', function (){return view('profile'); });
+
+    Route::get('/invoice', function (){return view('invoice'); });
     
     Route::get('/addinvoice','AddInvoiceController@ViewInvoice');
     
@@ -70,27 +76,20 @@ Route::group(['middleware' => 'WebGuard',], function () {
 
     Route::get('/invoice/getexcel/{startDate}&{endDate}','InvoiceReportController@generateExcel');
 
-    
 });
-
-
-Route::get('/home','DemoController@home');
 
 Route::get('/login','LoginController@login');
 
 Route::post('/login','LoginController@SubmitLogin');
 
-Route::get('/help', function () {
-    return view('help');
-});
+Route::get('/forgot-password', function(){return view('forgot-password'); });
 
-Route::get('/invoice', function () {
-    return view('invoice');
-});
+Route::post('/enter-otp','ForgotPasswordController@Forgot');
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+Route::post('/create-new-password','ForgotPasswordController@CreatePass');
+
+Route::post('/newpassword','ForgotPasswordController@SetPass');
+
 
 Route::get('/logout', function () {
     session()->forget('email');

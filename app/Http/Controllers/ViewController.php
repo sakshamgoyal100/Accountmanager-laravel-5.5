@@ -109,7 +109,7 @@ class ViewController extends Controller
 
         $pdf = \PDF::loadHTML($pdfContent);
 
-        return $pdf->download($user->name.'-'.today()->toDateString().'.pdf');
+        return $pdf->download($user->name.'-'.now().'.pdf');
     }
 
     public function excel($user_id)
@@ -124,7 +124,7 @@ class ViewController extends Controller
                ->first();
         
 
-        return \Excel::download(new Exportexcel($transactions,$user,$sum), $user->name.'-'.today()->toDateString().'.xlsx');
+        return \Excel::download(new Exportexcel($transactions,$user,$sum), $user->name.'-'.now().'.xlsx');
 
     }
 

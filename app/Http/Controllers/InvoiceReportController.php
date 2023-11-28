@@ -38,7 +38,7 @@ class InvoiceReportController extends Controller
 
        $pdf = \PDF::loadHTML($pdfcontent);
 
-       return $pdf->download(session('name').'-'.today().'.pdf');
+       return $pdf->download(session('name').'-'.now().'.pdf');
     }
 
     public function generateExcel($startDate,$endDate)
@@ -50,7 +50,7 @@ class InvoiceReportController extends Controller
 
        $export = new InvoiceExport($invoices,$totalsum,$startDate,$endDate);
 
-       return \Excel::download($export,session('name').'-'.today().'.xlsx');
+       return \Excel::download($export,session('name').'-'.now().'.xlsx');
 
 
 
