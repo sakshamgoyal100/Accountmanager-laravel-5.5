@@ -12,7 +12,9 @@
 
 			<!-- Show msg about password change or faliure etc. -->
 		    @if(session()->has('showMsg'))
+		    <div class="pd-5">
 	        <strong class="text-danger">{{session('showMsg')}}</strong>
+		    </div>
 		    @endif
 
 
@@ -21,13 +23,13 @@
             {{ csrf_field() }} 
 
 				<div class="input-group custom input-group-lg">
-					<input type="text" class="form-control" placeholder="Email" name="email">
+					<input type="email"  class="form-control" placeholder="Email" name="email">
 					<div class="input-group-append custom">
 						<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
 					</div>
 				</div>
 				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" placeholder="**********" name="password">
+					<input type="password" required class="form-control" placeholder="**********" name="password">
 					<div class="input-group-append custom">
 						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
 					</div>

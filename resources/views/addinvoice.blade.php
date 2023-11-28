@@ -205,6 +205,7 @@
 			        $('#invoice-id').val(($(this).data('id')));
 			        $('#party').val(($(this).data('partyid')));
 			        $('#GSTIN').val(($(this).data('gstin')));
+			        $('#GSTIN').prop('disabled',true);
 			        $('#taxable_amount').val(($(this).data('txamt')));
 			        $('#total_amount').val(($(this).data('ttlamt')));
 			        $('#invoice_number').val(($(this).data('number')));

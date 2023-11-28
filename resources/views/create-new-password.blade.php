@@ -4,7 +4,7 @@
 		<div class="login-box bg-white box-shadow pd-30 border-radius-5">
 			<img src="{{url('/images/login-img.png')}}" alt="login" class="login-img">
 			<h2 class="text-center mb-30">Forgot Password</h2>
-			<form action="{{url('/newpassword')}}" method="POST">
+			<form action="{{url('/create-new-password')}}" method="POST">
 
                 {{csrf_field()}}
 

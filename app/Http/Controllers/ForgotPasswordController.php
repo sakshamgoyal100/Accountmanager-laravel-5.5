@@ -17,19 +17,27 @@ class ForgotPasswordController extends Controller
        $otp = rand(1000,9999);
        
        $query = ForgotPassModel::InsertData($email,$otp);
-
+       
        if ($query) {
+             
+             try{
 
-       	   Mail::to($email)->send(new OtpMail($otp));
-           return view('enter-otp');
+                 Mail::to($email)->send(new OtpMail($otp));
+                 return view('enter-otp');
 
-       }else{
+             }catch (\Exception $e) {
+                 session()->put('showMsg','Error sending OTP,Please try later');
+                 return redirect('/login');
+             }
 
-       	   return "Something went wrong.";
-       }
+        }else{
+
+       	     session()->put('showMsg','Something went wrong while generating OTP');
+             return view('/login');
+        }
     }
 
-    public function CreatePass(Request $request)
+    public function VerifyOtp(Request $request)
     {
          $otp = $request->input('OTP');
 
@@ -37,37 +45,33 @@ class ForgotPasswordController extends Controller
 
          if ($query && session()->has('otpid')) {
          	
-         	return view('create-new-password');
+         	  return view('create-new-password');
 
          }else{
             
-            return "fail";
+            session()->put('showMsg','Wrong OTP.');
+            return view('/login');
 
          }
     }
 
-    public function SetPass(Request $request)
+    public function CreateNewPassword(Request $request)
     {
          $newpassword = $request->input('password');
 
          $query = ForgotPassModel::SetPassword($newpassword);
-        
+
          if ($query) {
            
-             session()->flush();
              session()->put('showMsg','Your Password Changed Successfully.');
              return view('login');
 
          }else{
-             return "error";
+             session()->put('showMsg','Error while creating new password.');
+             return view('login');
+
          }
-
-
-
-
-
-
-
     }
+
 
 }

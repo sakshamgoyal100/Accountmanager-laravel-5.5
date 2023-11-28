@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Party;
-use App\Models\Invoice;
+use App\Models\InvoiceModel;
 use Carbon\Carbon;
 
 
@@ -15,7 +15,7 @@ class AddInvoiceController extends Controller
     {
         $parties = Party::where('admin_id',session('id'))->get();
 
-        $invoices = Invoice::join('party', 'invoice.party_id', '=', 'party.id')
+        $invoices = InvoiceModel::join('party', 'invoice.party_id', '=', 'party.id')
 				    ->select('invoice.*', 'party.name', 'party.GSTIN')
 				    ->where('invoice.admin_id', session('id'))
 				    ->get();
@@ -32,11 +32,11 @@ class AddInvoiceController extends Controller
 	        
             if ($request->input('id') && $request->input('id') !== '') {
 
-		        $invoice = Invoice::find($request->input('id'));
+		        $invoice = InvoiceModel::find($request->input('id'));
 
 		    } else {
 
-		        $invoice = new Invoice();
+		        $invoice = new InvoiceModel();
                 
 		    }
 	                  
