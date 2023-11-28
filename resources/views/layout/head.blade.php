@@ -15,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-	<!-- Add Bootstrap CSS -->
+	<!-- Add Bootstrap v5.3.1 CSS -->
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
 
 	<!-- CSS -->

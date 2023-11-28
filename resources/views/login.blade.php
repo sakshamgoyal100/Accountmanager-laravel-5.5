@@ -1,9 +1,21 @@
 @include('layout.head')
 <body>
+    
+    
+
 	<div class="login-wrap customscroll d-flex align-items-center flex-wrap justify-content-center pd-20">
+
 		<div class="login-box bg-white box-shadow pd-30 border-radius-5">
+
 			<img src="{{url('images/login-img.png')}}" alt="login" class="login-img">
 			<h2 class="text-center mb-30">Login</h2>
+
+			<!-- Show msg about password change or faliure etc. -->
+		    @if(session()->has('showMsg'))
+	        <strong class="text-danger">{{session('showMsg')}}</strong>
+		    @endif
+
+
 			<form method="post" action="{{url('/login')}}">
         
             {{ csrf_field() }} 
@@ -27,7 +39,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<div class="forgot-password padding-top-10"><a href="forgot-password.php">Forgot Password</a></div>
+						<div class="forgot-password padding-top-10"><a href="{{url('forgot-password')}}">Forgot Password</a></div>
 					</div>
 				</div>
 			</form>

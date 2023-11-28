@@ -80,6 +80,14 @@ Route::get('/login','LoginController@login');
 
 Route::post('/login','LoginController@SubmitLogin');
 
+Route::get('/forgot-password', function(){return view('forgot-password'); });
+
+Route::post('/enter-otp','ForgotPasswordController@Forgot');
+
+Route::post('/create-new-password','ForgotPasswordController@CreatePass');
+
+Route::post('/newpassword','ForgotPasswordController@SetPass');
+
 Route::get('/help', function () {
     return view('help');
 });
